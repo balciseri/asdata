@@ -521,7 +521,7 @@ export class ByteArray {
    *   include "shift-jis", "cn-gb", "iso-8859-1", and others.
    *   For a complete list, see Supported Character Sets.
    */
-  public writeMultiByte(value: string, charSet: string): void {
+  public writeMultiByte(value: string, charSet: string = "utf8"): void {
     //
   }
 
