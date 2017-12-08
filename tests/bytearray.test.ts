@@ -1,6 +1,6 @@
 import * as chai from "chai";
 import * as mocha from "mocha";
-import ByteArray from "../src";
+import { ByteArray } from "../src";
 
 const expect = chai.expect;
 

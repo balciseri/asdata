@@ -1,7 +1,7 @@
 import { Int64 } from "./Int64";
 import { UInt64 } from "./UInt64";
 
-export default class ByteArray {
+export class ByteArray {
   public static BIG_ENDIAN: string = "bigEndian";
   public static LITTLE_ENDIAN: string = "littleEndian";
 
