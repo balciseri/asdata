@@ -245,10 +245,12 @@ export class ByteArray {
    *   On the other system, the application will use the system's default code page.
    * @return    UTF-8 encoded string.
    */
-  public readMultiByte(length: number, charSet?: string): string {
+  public readMultiByte(length: number, charSet: string = "utf8"): string {
     if (!this.validate(length)) { return null; }
-
-    return "";
+    const position = this.position;
+    this.position += length;
+    const buff = new Buffer(this.buffer);
+    return buff.toString(charSet, position, position + length);
   }
 
   /**
@@ -522,7 +524,10 @@ export class ByteArray {
    *   For a complete list, see Supported Character Sets.
    */
   public writeMultiByte(value: string, charSet: string = "utf8"): void {
-    //
+    const buff = new Buffer(value.length);
+    buff.write(value, 0, value.length, charSet);
+    const write = new Uint8Array(buff.buffer);
+    this.writeUint8Array(write);
   }
 
   /**
