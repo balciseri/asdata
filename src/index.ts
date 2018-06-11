@@ -249,8 +249,8 @@ export class ByteArray {
     if (!this.validate(length)) { return null; }
     const position = this.position;
     this.position += length;
-    const buff = new Buffer(this.buffer);
-    return buff.toString(charSet, position, position + length);
+    const buff = Buffer.from(this.buffer, this.bufferOffset + position, length);
+    return buff.toString(charSet, 0, length);
   }
 
   /**
