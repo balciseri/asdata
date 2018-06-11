@@ -1,17 +1,40 @@
 import * as chai from "chai";
 import * as mocha from "mocha";
-import {  ByteArray } from "../src";
+import * as fs from "fs";
+import { ByteArray } from "../src";
 
 const expect = chai.expect;
 
 let ba: ByteArray;
+let fileBuffer: Buffer;
 
-beforeEach((done) => {
-  ba = new ByteArray();
-  done();
+describe("ByteArray with offset and length", () => {
+
+  before((done) => {
+    fileBuffer = fs.readFileSync("tests/fixtures/HintCategory.d2o");
+    done();
+  });
+
+  it("should create an instance with correct length and bytesAvailable", () => {
+    const arrayBuffer: ArrayBuffer = fileBuffer.buffer;
+    ba = new ByteArray(arrayBuffer, fileBuffer.byteOffset, fileBuffer.byteLength)
+    expect(ba.length).eq(fileBuffer.byteLength);
+    expect(ba.bytesAvailable).eq(fileBuffer.byteLength);
+  });
+
+  it("it should read D2O header", () => {
+    expect(ba.readMultiByte(3, "ASCII")).equal("D2O");
+  });
+
 });
 
 describe("ByteArray", () => {
+
+  beforeEach((done) => {
+    ba = new ByteArray();
+    done();
+  });
+
   it("should create an instance of ByteArray", () => {
     ba = new ByteArray();
   });
@@ -43,4 +66,12 @@ describe("ByteArray", () => {
     expect(ba.readMultiByte(4)).equal("yolo");
     expect(ba.readMultiByte(5, "ascii")).equal("again");
   });
+
+  it("should create an instance with wrong length and bytesAvailable when using a small buffer", () => {
+    const arrayBuffer: ArrayBuffer = fileBuffer.buffer;
+    ba = new ByteArray(arrayBuffer)
+    expect(ba.length).not.eq(fileBuffer.byteLength);
+    expect(ba.bytesAvailable).not.eq(fileBuffer.byteLength);
+  });
+
 });

@@ -6,10 +6,10 @@
   "types": "dist/src/index.d.ts",
   "unpkg": "dist/asdata.min.js",
   "scripts": {
-    "test": "mocha --reporter spec --require ts-node/register 'tests/**/*.test.ts'",
+    "test": "mocha --reporter spec --require ts-node/register tests/**/*.test.ts",
     "lint": "tslint -p .",
     "lint:fix": "tslint -p . --fix",
-    "build": "webpack --debug; webpack -p",
+    "build": "webpack --debug && webpack -p",
     "prepublish": "yarn lint:fix && yarn test && yarn build"
   },
   "repository": {
