@@ -11,7 +11,7 @@
     "lint:fix": "tslint -p . --fix",
     "dev": "webpack --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "prepublish": "yarn lint:fix && yarn test && yarn build"
+    "prepublish": "yarn lint:fix && yarn test && yarn dev && yarn build"
   },
   "repository": {
     "type": "git",

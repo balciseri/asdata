@@ -27,6 +27,7 @@ module.exports = {
   resolve: {
     extensions: [".tsx", ".ts", ".js"]
   },
+  target: "node",
   output: {
     path: path.join(__dirname, '/dist'),
     library: "asdata",
