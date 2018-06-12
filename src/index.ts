@@ -250,7 +250,7 @@ export class ByteArray {
     const position = this.position;
     this.position += length;
     const buff = Buffer.from(this.buffer, this.bufferOffset + position, length);
-    return buff.toString(charSet, 0, length);
+    return buff.toString(charSet);
   }
 
   /**
