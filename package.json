@@ -1,6 +1,6 @@
 {
   "name": "asdata",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Extended ActionScript3 ByteArray API for JavaScript",
   "main": "dist/asdata.min.js",
   "types": "dist/src/index.d.ts",
